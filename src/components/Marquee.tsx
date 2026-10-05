@@ -17,25 +17,31 @@ const Marquee = async () => {
 
     return (
         <div className="w-full bg-red-600 text-white">
-            <div className="max-w-7xl mx-auto flex items-center">
+            <div className="w-full flex items-center h-9">
 
-                {/* সর্বশেষ */}
-                <div className="shrink-0 bg-red-700 px-5 py-2.5 text-sm font-bold">
+                {/* Latest */}
+                <div className="shrink-0 bg-red-700 h-9 flex items-center px-4 text-sm font-bold">
                     সর্বশেষ
                 </div>
 
                 {/* Marquee */}
-                <div className="min-w-0 flex-1">
+                <div className="flex-1 min-w-0 h-9 overflow-hidden">
                     <MarqueeText
                         direction="right"
-                        speed={10}
+                        speed={30}
                         loop={true}
-                        className="text-white text-sm py-2.5 font-semibold"
+                        className="text-white text-sm font-semibold leading-9"
                     >
                         {headlines.map((h) => (
-                            <span key={h.id} className="inline-flex items-center">
+                            <span
+                                key={h.id}
+                                className="inline-flex items-center"
+                            >
                                 <span>{h.title}</span>
-                                <span className="mx-5 text-red-200">•</span>
+
+                                <span className="mx-5 text-red-200">
+                                    •
+                                </span>
                             </span>
                         ))}
                     </MarqueeText>

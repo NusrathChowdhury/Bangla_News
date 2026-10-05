@@ -18,6 +18,7 @@ const NavLinks = async () => {
     const data = await res.json();
 
     const nav: Navs[] = data.data;
+
     const filterdNavs = nav.filter((n) => n.scrapable);
 
     return (
@@ -25,7 +26,7 @@ const NavLinks = async () => {
 
             <Link
                 href="/"
-                className="font-semibold hover:text-primary transition"
+                className="font-semibold hover:text-primary transition whitespace-nowrap"
             >
                 হোম
             </Link>
@@ -33,7 +34,7 @@ const NavLinks = async () => {
             {filterdNavs.map((n) => (
                 <Link
                     key={n.slug}
-                    href={n.slug}
+                    href={`/category/${n.slug}`}
                     className="whitespace-nowrap text-sm font-medium hover:text-primary transition"
                 >
                     {n.title}
