@@ -7,7 +7,9 @@ const SignUPPage = () => {
 
                 {/* Page Heading */}
                 <div className="text-center mb-6">
-
+                     <p className="text-red-600 font-semibold text-sm mb-2">
+                        Sign Up
+                    </p>
 
                     <h1 className="text-3xl md:text-2xl font-bold">
                         নতুন অ্যাকাউন্ট তৈরি করুন

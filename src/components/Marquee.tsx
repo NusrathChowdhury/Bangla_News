@@ -1,3 +1,4 @@
+
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
 
@@ -28,9 +29,8 @@ const Marquee = async () => {
                 <div className="flex-1 min-w-0 h-9 overflow-hidden">
                     <MarqueeText
                         direction="right"
-                        speed={30}
                         loop={true}
-                        className="text-white text-sm font-semibold leading-9"
+                        className="marquee-speed text-white text-sm font-semibold leading-9"
                     >
                         {headlines.map((h) => (
                             <span

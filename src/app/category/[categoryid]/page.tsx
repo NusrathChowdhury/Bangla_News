@@ -1,3 +1,4 @@
+import notFound from "@/app/not-found";
 import NewsCard from "@/components/NewsCard";
 import React from "react";
 
@@ -27,6 +28,10 @@ const CategoryNews = async ({
 
     const categoryNews: News[] = data.data;
 
+    if (!categoryNews) {
+        notFound();
+
+    }
     return (
         <main className="max-w-7xl mx-auto px-4 py-6">
             <h1 className="text-2xl md:text-3xl font-bold border-b-2 border-red-700 pb-3 mb-6">
