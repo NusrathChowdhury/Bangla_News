@@ -1,4 +1,4 @@
-import Image from "next/image";
+ import Image from "next/image";
 import React from "react";
 
 interface NewsDetailsProps {
@@ -38,7 +38,7 @@ const NewsDetails = async ({ params }: NewsDetailsProps) => {
                     <div className="relative w-full h-64 md:h-[450px] overflow-hidden rounded-xl">
                         <Image
                             src={news.imageUrl}
-                            alt={news.imageAlt}
+                            alt={news.imageAlt || news.title}
                             fill
                             className="object-cover"
                         />
@@ -47,7 +47,7 @@ const NewsDetails = async ({ params }: NewsDetailsProps) => {
 
                 <div className="px-5 pb-8 md:px-8">
                     <p className="text-lg md:text-xl leading-8 text-base-content/75">
-                        {news.description}
+                        {news.text}
                     </p>
                 </div>
 

@@ -9,11 +9,11 @@ const Header = () => {
     return (
         <header className="bg-base-100 border-b border-base-200">
 
-            {/* Top Header */}
+            {/* Header */}
             <div className="max-w-7xl mx-auto px-4 py-5">
-                <div className="flex items-center justify-between">
+                <div className="relative flex items-center justify-center">
 
-                    {/* Logo & Website Info */}
+                    {/* Logo + Name + Date */}
                     <div className="flex items-center gap-4">
                         <Image
                             src="/logo.webp"
@@ -34,13 +34,13 @@ const Header = () => {
                         </div>
                     </div>
 
-                    {/* Auth Buttons */}
-                    <div className="flex items-center gap-2">
+                    {/* Sign In + Sign Up */}
+                    <div className="absolute right-0 flex items-center gap-2">
                         <button className="btn btn-ghost font-semibold">
                             সাইন ইন
                         </button>
 
-                        <button className="btn btn-primary rounded-lg px-5">
+                        <button className="btn bg-red-700 hover:bg-red-800 text-white border-none rounded-lg px-5">
                             সাইন আপ
                         </button>
                     </div>

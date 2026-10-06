@@ -21,7 +21,7 @@ const NewsCard = ({ news }: { news: News }) => {
                         height={300}
                         width={300}
                         src={news.imageUrl}
-                        alt={news.imageAlt}
+                        alt={news.imageAlt || news.title}
                         className="w-full h-48 object-cover"
                     />
                 </figure>
