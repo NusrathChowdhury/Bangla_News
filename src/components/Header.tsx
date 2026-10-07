@@ -1,5 +1,6 @@
 import NavLinks from "@/components/NavLinks";
 import Image from "next/image";
+import UserInfo from "./UserInfo";
 
 const Header = () => {
     const date = new Date().toLocaleDateString("bn-BD", {
@@ -11,16 +12,16 @@ const Header = () => {
 
             {/* Header */}
             <div className="max-w-7xl mx-auto px-4 py-5">
-                <div className="relative flex items-center justify-center">
+                <div className="relative flex flex-col items-center">
 
                     {/* Logo + Name + Date */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-3">
                         <Image
                             src="/logo.webp"
                             alt="Bangla News 24 Logo"
                             width={70}
                             height={70}
-                            className="object-contain"
+                            className="object-contain shrink-0"
                         />
 
                         <div>
@@ -34,15 +35,9 @@ const Header = () => {
                         </div>
                     </div>
 
-                    {/* Sign In + Sign Up */}
-                    <div className="absolute right-0 flex items-center gap-2">
-                        <button className="btn btn-ghost font-semibold">
-                            সাইন ইন
-                        </button>
-
-                        <button className="btn bg-red-700 hover:bg-red-800 text-white border-none rounded-lg px-5">
-                            সাইন আপ
-                        </button>
+                    {/* User Info */}
+                    <div className="mt-4 md:mt-0 md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2">
+                        <UserInfo />
                     </div>
 
                 </div>

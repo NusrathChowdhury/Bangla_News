@@ -1,14 +1,77 @@
+
+"use client";
+
 import React from "react";
+import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignInPage = () => {
+    const onSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget);
+
+        const user = Object.fromEntries(formData.entries()) as {
+            email: string;
+            password: string;
+        };
+
+        if (!user.email) {
+            toast.error("ইমেইল লিখুন");
+            return;
+        }
+
+        if (!user.password) {
+            toast.error("পাসওয়ার্ড লিখুন");
+            return;
+        }
+
+        const { data, error } = await authClient.signIn.email({
+            email: user.email,
+            password: user.password,
+            callbackURL: "/",
+        });
+
+        if (data) {
+            toast.success("সফলভাবে লগইন হয়েছে!");
+
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 1000);
+
+            return;
+        }
+
+        if (error) {
+            if (error.code === "INVALID_EMAIL_OR_PASSWORD") {
+                toast.error("ইমেইল অথবা পাসওয়ার্ড সঠিক নয়");
+            } else if (error.code === "USER_NOT_FOUND") {
+                toast.error("এই ইমেইলে কোনো অ্যাকাউন্ট পাওয়া যায়নি");
+            } else {
+                toast.error("লগইন করা যায়নি। আবার চেষ্টা করুন");
+            }
+        }
+    };
+
     return (
         <div className="min-h-[calc(100vh-120px)] flex items-center justify-center px-4 py-10 bg-base-200">
+
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                closeOnClick
+                pauseOnHover
+            />
+
             <div className="w-full max-w-md">
 
                 {/* Page Heading */}
                 <div className="text-center mb-6">
                     <p className="text-red-600 font-semibold text-sm mb-2">
-                        Sign In
+                        লগইন
                     </p>
 
                     <h1 className="text-3xl md:text-2xl font-bold">
@@ -21,7 +84,10 @@ const SignInPage = () => {
                 </div>
 
                 {/* Sign In Card */}
-                <form className="card bg-base-100 shadow-xl border border-base-300">
+                <form
+                    onSubmit={onSubmit}
+                    className="card bg-base-100 shadow-xl border border-base-300"
+                >
                     <fieldset className="p-6 md:p-8">
 
                         {/* Email */}
@@ -33,7 +99,9 @@ const SignInPage = () => {
                             </label>
 
                             <input
+                                name="email"
                                 type="email"
+                                required
                                 className="input input-bordered w-full focus:border-red-600 focus:outline-none"
                                 placeholder="আপনার ইমেইল লিখুন"
                             />
@@ -48,7 +116,9 @@ const SignInPage = () => {
                             </label>
 
                             <input
+                                name="password"
                                 type="password"
+                                required
                                 className="input input-bordered w-full focus:border-red-600 focus:outline-none"
                                 placeholder="আপনার পাসওয়ার্ড লিখুন"
                             />
@@ -67,9 +137,13 @@ const SignInPage = () => {
                             <span className="text-base-content/60">
                                 অ্যাকাউন্ট নেই?
                             </span>{" "}
-                            <span className="text-red-600 font-semibold cursor-pointer hover:underline">
-                                Sign Up
-                            </span>
+
+                            <Link
+                                href="/signup"
+                                className="text-red-600 font-semibold hover:underline"
+                            >
+                                সাইন আপ করুন
+                            </Link>
                         </div>
 
                     </fieldset>
